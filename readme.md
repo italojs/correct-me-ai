@@ -1,5 +1,6 @@
 # Chrome Extension for Text Correction with OpenAI API
 
+![](./usage.png)
 ## Description
 
 This Chrome extension enables users to select text on any web page and receive instant corrections for the selected text using the OpenAI API. An icon will appear next to the selected text, and upon clicking this icon, a modal will display with a language selector and the text correction in the chosen language.

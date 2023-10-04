@@ -11,7 +11,7 @@ document.addEventListener('click', function(e) {
         container.style.position = 'absolute';
         container.style.top = '0';
         container.style.left = '0';
-        container.style.width = '400px'; 
+        container.style.width = '800px'; 
         container.style.height = 'auto';
         container.style.zIndex = '2147483647';
         container.classList.add('translation-icon-container');
@@ -76,7 +76,7 @@ function createPopup(x, y, selectedText, container) {
                 'Authorization': `Bearer ${OPEN_API_KEY}`
             },
             body: JSON.stringify({
-                prompt: `You are a teacher of language ${language}, if existent, indicate the gramatic errors of the following sentense: "${selectedText}". `,
+                prompt: `You are a teacher of language ${language}, if existent, indicate the gramatic errors and why is wrong of the following sentense: "${selectedText}". `,
                 max_tokens: 4000
             })
         })
