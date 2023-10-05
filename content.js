@@ -39,12 +39,28 @@ function createPopup(x, y, selectedText, container) {
     let popup = document.createElement('div');
     popup.id = 'language-popup';
     popup.style.position = 'absolute';
-    popup.style.top = (y + 20) + 'px'; 
-    popup.style.left = x + 'px';
-    popup.style.padding = '10px';
+    popup.style.maxWidth = '600px';
     popup.style.backgroundColor = 'white';
     popup.style.border = '1px solid black';
+    popup.style.zIndex = '2147483647';
+    popup.style.padding = '10px';
+    
+    
+    const popupWidth = 600; 
+    const popupHeight = 150; 
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
 
+    if (x + popupWidth > windowWidth) {
+        x = windowWidth - popupWidth - 100;
+    }
+
+    if (y + popupHeight > windowHeight) {
+        y = windowHeight - popupHeight - 100;
+    }
+
+    popup.style.top = y + 'px';
+    popup.style.left = x + 'px';
 
     let select = document.createElement('select');
     let options = ['English', 'Spanish', 'Portuguese'];
@@ -55,7 +71,8 @@ function createPopup(x, y, selectedText, container) {
     });
 
     popup.appendChild(select);
-    document.body.appendChild(popup);
+    container.appendChild(popup); 
+
 
     let loading = document.createElement('div');
     loading.id = 'loading';
@@ -76,7 +93,7 @@ function createPopup(x, y, selectedText, container) {
                 'Authorization': `Bearer ${OPEN_API_KEY}`
             },
             body: JSON.stringify({
-                prompt: `You are a teacher of language ${language}, if existent, indicate the gramatic errors and why is wrong of the following sentense: "${selectedText}". `,
+                prompt: `You are a teacher of language ${language}, if existent, indicate the gramatic errors and why is wrong of the following sentense, please, reply in ${language} language, be brief: "${selectedText}". `,
                 max_tokens: 4000
             })
         })
